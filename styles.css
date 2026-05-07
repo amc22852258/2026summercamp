@@ -26,11 +26,13 @@ body {
   background: var(--paper);
   font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.7;
+  overflow-x: hidden;
 }
 
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -577,20 +579,63 @@ section:not(.hero) {
 }
 
 @media (max-width: 980px) {
+  .site-header {
+    display: grid;
+    gap: 10px;
+    align-items: start;
+    padding: 12px 18px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
   .nav {
+    display: flex;
+    width: calc(100vw - 36px);
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
     display: none;
   }
 
+  .nav a {
+    flex: 0 0 auto;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .site-header[data-scrolled="true"] .nav a {
+    border-color: var(--line);
+    background: rgba(16, 34, 57, 0.05);
+  }
+
   .hero {
-    min-height: auto;
-    padding-top: 118px;
-    padding-bottom: 360px;
+    min-height: 100svh;
+    padding-top: 138px;
+    padding-bottom: 34px;
+    align-items: start;
+  }
+
+  .hero-content {
+    width: 100%;
   }
 
   .hero-panel {
-    left: 20px;
-    right: 20px;
-    bottom: 28px;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 24px;
   }
 
   .flow,
@@ -614,25 +659,97 @@ section:not(.hero) {
 }
 
 @media (max-width: 640px) {
-  .brand span {
-    display: none;
+  .site-header {
+    padding: 10px 14px;
+  }
+
+  .brand {
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav {
+    width: calc(100vw - 28px);
   }
 
   .hero {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding: 124px 16px 28px;
+  }
+
+  .hero-media img {
+    object-position: center top;
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(180deg, rgba(7, 18, 31, 0.86) 0%, rgba(7, 18, 31, 0.58) 42%, rgba(7, 18, 31, 0.94) 100%),
+      linear-gradient(90deg, rgba(7, 18, 31, 0.86), rgba(7, 18, 31, 0.36));
   }
 
   h1 {
-    font-size: 48px;
+    margin-bottom: 16px;
+    font-size: clamp(42px, 15vw, 58px);
+    line-height: 1.04;
+  }
+
+  h2 {
+    font-size: clamp(28px, 10vw, 38px);
+  }
+
+  h3 {
+    font-size: 20px;
   }
 
   .hero-copy {
-    font-size: 17px;
+    margin-bottom: 20px;
+    font-size: 16px;
   }
 
   .hero-actions {
     display: grid;
+  }
+
+  .button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .hero-panel {
+    padding: 16px;
+  }
+
+  .hero-panel div {
+    grid-template-columns: 58px 1fr;
+    gap: 10px;
+  }
+
+  section:not(.hero) {
+    padding: 56px 16px;
+  }
+
+  .section-head {
+    margin-bottom: 24px;
+  }
+
+  .section-head p:not(.eyebrow),
+  .world-copy p:not(.eyebrow),
+  .highlight p,
+  .highlight li,
+  .coin-copy p:not(.eyebrow) {
+    font-size: 16px;
+  }
+
+  .feature-grid article,
+  .schedule-grid article,
+  .mission-cards article,
+  .coin-actions article,
+  .faq-item {
+    padding: 18px;
   }
 
   .character-strip,
@@ -640,6 +757,29 @@ section:not(.hero) {
   .mission-cards,
   .coin-actions {
     grid-template-columns: 1fr;
+  }
+
+  .character-strip img {
+    max-height: 520px;
+  }
+
+  .mission-posters img,
+  .highlight img {
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .coin-window strong {
+    font-size: 19px;
+  }
+
+  .prize-panel {
+    padding: 16px;
+  }
+
+  .faq-item span {
+    align-items: flex-start;
+    font-size: 18px;
   }
 
   .flow {
@@ -652,5 +792,7 @@ section:not(.hero) {
 
   .footer {
     display: grid;
+    padding: 22px 16px;
+    font-size: 14px;
   }
 }
