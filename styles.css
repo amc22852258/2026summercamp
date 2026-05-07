@@ -578,6 +578,11 @@ section:not(.hero) {
   background: #07121f;
 }
 
+.footer a {
+  color: #ffd166;
+  font-weight: 900;
+}
+
 @media (max-width: 980px) {
   .site-header {
     display: grid;
